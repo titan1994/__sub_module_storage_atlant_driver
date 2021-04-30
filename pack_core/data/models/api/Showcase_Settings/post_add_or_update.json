@@ -1,0 +1,60 @@
+{
+  "string (client_key)": {
+    "string (system name showcase)": {
+      "human_name": "string",
+      "relation_dicts": {
+        "string (dict_name)": {
+          "client_name": "name client of dictionary (delete or empty if dictionary this client)",
+          "ignore_or_using_list": "bool True-ignore(all except columns_list) False-use (only in the columns_list)",
+          "columns_list": [
+            "string (name column dict)"
+          ],
+          "relation_keys": [
+            "string (name column showcase-search-dict-key)"
+          ]
+        }
+      },
+      "kafka_settings_queue": {
+        "kafka_num_consumers": "Int (mandatory and equal num of partition topic)",
+        "kafka_thread_per_consumer": "Int (Optional)",
+        "kafka_format": "string (default JSONEachRow)",
+        "kafka_row_delimiter": "string (optional)",
+        "kafka_schema": "string (optional)",
+        "kafka_max_block_size": "Int (optional)"
+      },
+      "columns": {
+        "string (name column)": {
+          "human_name": "string",
+          "type": "string (CLICK HOUSE TYPE)",
+          "new_name": "optional, string",
+          "dma": "optional, string (DEFAULT|MATERIALIZED|ALIAS expr1)",
+          "ttl": "optional, string (TTL expr1)"
+        }
+      },
+      "index": {
+        "string (name index)": {
+          "expr": "string (expression of index)",
+          "type": "string",
+          "gran": "Int (granularity)"
+        }
+      },
+      "engine": "string (MergeTree() example)",
+      "order_by": [
+        "string (order by column name or expr)"
+      ],
+      "partition_by": [
+        "string (partition by column name or expr)"
+      ],
+      "primary_keys": [
+        "string (primary key column name or expr)"
+      ],
+      "sample_by": [
+        "string (sample by column name or expr)"
+      ],
+      "ttl": "string (ttl expr)",
+      "settings": {
+        "string (key)": "string/other json (value)"
+      }
+    }
+  }
+}

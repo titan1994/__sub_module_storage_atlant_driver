@@ -1,0 +1,38 @@
+[
+  {
+    "structureMetadata": {
+      "guid": "0a2aff7f-e267-4672-a0ac-cc014a256ca1",
+      "type": "alpha",
+      "meta_data_class": "Справочники",
+      "meta_data_name": "Контрагенты"
+    },
+    "structureBody": {
+      "Наименование": "Иванов ИИ",
+      "ИНН": "2342"
+    }
+  },
+  {
+    "structureMetadata": {
+      "guid": "0a2aff7f-e267-4672-a0ac-cc014a256ca1",
+      "type": "alpha",
+      "meta_data_class": "Справочники",
+      "meta_data_name": "Контрагенты"
+    },
+    "structureBody": {
+      "Наименование": "Иванов ИИ",
+      "ИНН": "2342_1111"
+    }
+  },
+  {
+    "structureMetadata": {
+      "guid": "0a2aff7f-e267-4672-a0ac-cc014a256ca1",
+      "type": "alpha",
+      "meta_data_class": "Справочники",
+      "meta_data_name": "Контрагенты"
+    },
+    "structureBody": {
+      "Наименование": "ООО Жупиков",
+      "ИНН": "5678"
+    }
+  }
+]

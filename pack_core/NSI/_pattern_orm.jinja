@@ -1,0 +1,21 @@
+from tortoise import fields, models
+from MODS.standart_namespace.models import asf
+
+
+class ORM_{{name_model}}(models.Model):
+    """
+    {{comment_model}}
+    """
+    __original_dict_name__ = '{{name_dict}}'
+    __original_client_name__ = '{{name_client}}'
+
+    {% for column in columns %}
+    # {{column['comment']}}
+    {{column['name']}} = fields.{{column['type']}}(
+        description ='{{column['comment']}}'{% for name, value in column['params'].items() %}, {{name}}={{value}}{% endfor %}
+    )
+    {% endfor %}
+
+    class Meta:
+        table = asf('{{name_model}}')
+

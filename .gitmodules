@@ -1,0 +1,17 @@
+
+
+[submodule "MODS/scripts"]
+	path = MODS/scripts
+	url = https://github.com/titan1994/__sub_module_scripts
+[submodule "MODS/documents"]
+	path = MODS/documents
+	url = https://github.com/titan1994/__sub_module_documents
+[submodule "MODS/DRIVERS"]
+	path = MODS/DRIVERS
+	url = https://github.com/titan1994/__sub_module_drivers
+[submodule "MODS/standart_namespace"]
+	path = MODS/standart_namespace
+	url = https://github.com/titan1994/__sub_modile_name_space_standart
+[submodule "MODS/rest_core"]
+	path = MODS/rest_core
+	url = https://github.com/titan1994/__sub_module_fast_api

@@ -1,0 +1,63 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+# Fast API + Pedantic + starlette
+fastapi="*"
+atlastk="*"
+click="*"
+ddlparse="*"
+dictdiffer="*"
+h11="*"
+iso8601="*"
+pydantic="*"
+pyparsing="*"
+PyPika="*"
+pytz="*"
+starlette="*"
+# ORM Tortoise + Migrator - Aerich
+aiosqlite="*"
+asyncpg="*"
+tortoise-orm="*"
+typing-extensions="*"
+psycopg2 = "*"
+SQLAlchemy = "*"
+jinja2 = "*"
+# ASGI WSGI
+uvicorn = {extras = [ "standard",]}
+gunicorn = "*"
+gevent = "*"
+hypercorn = "*"
+#DATA BASE FRIVERS
+#asyncpg = "*"
+asynch = "*"
+clickhouse-driver = "*"
+# DOT ENV
+python-dotenv = "*"
+# EXEL XLSX Driver
+openpyxl = "*"
+Pillow = "*"
+pandas = "*"
+lxml = "*"
+XlsxWriter = "*"
+# KAFKA
+pykafka = "*"
+kafka-python = "*"
+confluent-kafka = "*"
+#aiokafka = "*"
+# Faust
+faust = "*"
+# Network
+requests = "*"
+faker = "*"
+httpx = "*"
+# Docker
+pyyaml = "*"
+aerich = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"

@@ -1,0 +1,40 @@
+[
+  {
+    "organization": "string",
+    "property": {
+      "subject": "string",
+      "OKTMO": "string",
+      "contacts": "string",
+      "KFH": {
+        "registration_data": "string (ISO 8601)",
+        "registration_address": "string",
+        "full_name": "string",
+        "general_old": "string"
+      },
+      "grant": {
+        "name": "string",
+        "type": "string",
+        "year": "string",
+        "size": "float",
+        "amount_own_funds": "float",
+        "amount_borrowed_funds": "float",
+        "OKWED_KFH": "string",
+        "OKWED_type": "string",
+        "project_cost": "float"
+      }
+    },
+    "data": [
+      {
+        "subject": "string",
+        "period": "string",
+        "source_system": "string",
+        "source_form": "string",
+        "type": "string",
+        "economic_indicator": "string",
+        "code_score_ispkgp": "string",
+        "code_score_iscsapk": "string",
+        "value": "float"
+      }
+    ]
+  }
+]

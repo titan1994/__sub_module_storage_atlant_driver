@@ -1,0 +1,26 @@
+{
+    "show_case_input": 1,
+    "show_case_success_remove": 1,
+    "report_remove": {
+        "general_nsi": {
+            "status": true,
+            "msg": "all showcases well be remove",
+            "showcase_input": 1,
+            "showcase_success_remove": 1,
+            "report_showcase": {
+                "means_of_passport": {
+                    "showcase_name": "means_of_passport",
+                    "ycl_remove": true,
+                    "msg": "success remove"
+                }
+            }
+        }
+    },
+    "jsonb_processing": {
+        "general_nsi": {
+            "status": true,
+            "jsonb_service_info": {},
+            "error_msg": ""
+        }
+    }
+}

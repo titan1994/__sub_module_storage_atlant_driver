@@ -1,0 +1,14 @@
+{
+  "client_key (string)": {
+    "human_name": "string",
+    "showcases": {
+      "string (system name showcase)": "../Showcase_Settings/post_add_or_update.json"
+    },
+    "dictionaries": {
+      "string (dictionary name)": "../Dictionary_Settings/post_add_or_update.json"
+    },
+    "add_info": {
+      "some key": "some value"
+    }
+  }
+}

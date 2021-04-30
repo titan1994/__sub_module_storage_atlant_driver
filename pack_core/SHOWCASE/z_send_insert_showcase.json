@@ -1,0 +1,84 @@
+{
+    "show_case_input": 1,
+    "show_case_success_import": 1,
+    "report_show_cases": {
+        "general_nsi": {
+            "status": true,
+            "msg": "OK",
+            "showcase_input": 1,
+            "showcase_success_insert": 1,
+            "report": {
+                "means_of_passport": {
+                    "success": true,
+                    "process_input_data": true,
+                    "create_or_update_topic": true,
+                    "create_or_update_queue": true,
+                    "create_or_update_showcase": true,
+                    "create_or_update_view": true,
+                    "msg": "OK",
+                    "target_report_settings_update": {},
+                    "target_report_column_update": {}
+                }
+            }
+        }
+    },
+    "new_meta_show_cases": {
+        "general_nsi": {
+            "means_of_passport": {
+                "comment": "Значения паспорта КФХ",
+                "target_table": {
+                    "table_name": "__cl_smpb_showcase_data_general_nsi_means_of_passport",
+                    "columns": {
+                        "INN": {
+                            "human_name": "ИНН",
+                            "type": "String",
+                            "comment": "ИНН",
+                            "dma": "",
+                            "ttl": ""
+                        },
+                        "Size": {
+                            "human_name": "Размер ставки-подставки",
+                            "type": "Int32",
+                            "comment": "Размер ставки-подставки",
+                            "dma": "",
+                            "ttl": ""
+                        },
+                        "MaxPart": {
+                            "human_name": "Максимальная часть. Редкость",
+                            "type": "Int32",
+                            "comment": "Максимальная часть. Редкость",
+                            "dma": "",
+                            "ttl": ""
+                        },
+                        "new_dict_OKTMO": {
+                            "type": "String",
+                            "dma": "ALIAS dictGet(__cl_smpb_nsi_general_nsi_new_dict, 'OKTMO', tuple(toString(INN)))",
+                            "ttl": "",
+                            "is_dict": true,
+                            "comment": "OKTMO"
+                        }
+                    },
+                    "engine": "MergeTree()",
+                    "order_by": [
+                        "INN"
+                    ]
+                },
+                "kafka_settings_queue": {
+                    "kafka_num_consumers": 4,
+                    "kafka_thread_per_consumer": 1,
+                    "kafka_format": "'JSONEachRow'",
+                    "kafka_row_delimiter": "'\\n'",
+                    "kafka_broker_list": "'kafka1:19091,kafka2:19092,kafka3:19093'",
+                    "kafka_topic_list": "'__cl_smpb_showcase_kafka_queue_general_nsi_means_of_passport'",
+                    "kafka_group_name": "'__cl_smpb_showcase_kafka_consumer_general_nsi_means_of_passport'",
+                    "kafka_skip_broken_messages": 65536
+                },
+                "kafka_topic_name": "__cl_smpb_showcase_kafka_queue_general_nsi_means_of_passport",
+                "kafka_group_consumer_name": "__cl_smpb_showcase_kafka_consumer_general_nsi_means_of_passport",
+                "ycl_table_showcase_kafka_queue": "__cl_smpb_showcase_kafka_queue_general_nsi_means_of_passport",
+                "ycl_table_showcase_data": "__cl_smpb_showcase_data_general_nsi_means_of_passport",
+                "ycl_table_showcase_view": "__cl_smpb_showcase_view_general_nsi_means_of_passport"
+            }
+        }
+    }
+}

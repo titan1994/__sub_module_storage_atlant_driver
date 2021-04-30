@@ -1,0 +1,114 @@
+[
+    {
+        "structureMetadata": {
+            "guid": "61e15019-2ceb-4491-9c2c-6b104b727235",
+            "type": "alpha",
+            "ASGI_python_showcase_app_name": "ASGI_python_app___sub_module_storage_atlant",
+            "ASGI_python_app___sub_module_storage_atlant_client_key": "general_nsi"
+        },
+        "structureBody": {
+            "address": "Улица безграничной галактики в доме вселенной",
+            "comment": "Тестовый клиент. Основные словари",
+            "showcases": {
+                "means_of_passport": {
+                    "comment": "Значения паспорта КФХ",
+                    "target_table": {
+                        "engine": "MergeTree()",
+                        "columns": {
+                            "INN": {
+                                "dma": "",
+                                "ttl": "",
+                                "type": "String",
+                                "comment": "ИНН",
+                                "human_name": "ИНН"
+                            },
+                            "Size": {
+                                "dma": "",
+                                "ttl": "",
+                                "type": "Int32",
+                                "comment": "Размер ставки-подставки",
+                                "human_name": "Размер ставки-подставки"
+                            },
+                            "MaxPart": {
+                                "dma": "",
+                                "ttl": "",
+                                "type": "Int32",
+                                "comment": "Максимальная часть. Редкость",
+                                "human_name": "Максимальная часть. Редкость"
+                            },
+                            "new_dict_OKTMO": {
+                                "dma": "ALIAS dictGet(____sub_module_storage_atlant_nsi_general_nsi_new_dict, 'OKTMO', tuple(toString(INN)))",
+                                "ttl": "",
+                                "type": "String",
+                                "comment": "OKTMO",
+                                "is_dict": true
+                            }
+                        },
+                        "order_by": [
+                            "INN"
+                        ],
+                        "table_name": "____sub_module_storage_atlant_showcase_data_general_nsi_means_of_passport"
+                    },
+                    "kafka_topic_name": "____sub_module_storage_atlant_showcase_kafka_queue_general_nsi_means_of_passport",
+                    "kafka_settings_queue": {
+                        "kafka_format": "'JSONEachRow'",
+                        "kafka_group_name": "'____sub_module_storage_atlant_showcase_kafka_consumer_general_nsi_means_of_passport'",
+                        "kafka_topic_list": "'____sub_module_storage_atlant_showcase_kafka_queue_general_nsi_means_of_passport'",
+                        "kafka_broker_list": "'kafka1:19091,kafka2:19092,kafka3:19093'",
+                        "kafka_num_consumers": 4,
+                        "kafka_row_delimiter": "'\\n'",
+                        "kafka_thread_per_consumer": 1,
+                        "kafka_skip_broken_messages": 65536
+                    },
+                    "ycl_table_showcase_data": "____sub_module_storage_atlant_showcase_data_general_nsi_means_of_passport",
+                    "ycl_table_showcase_view": "____sub_module_storage_atlant_showcase_view_general_nsi_means_of_passport",
+                    "kafka_group_consumer_name": "____sub_module_storage_atlant_showcase_kafka_consumer_general_nsi_means_of_passport",
+                    "ycl_table_showcase_kafka_queue": "____sub_module_storage_atlant_showcase_kafka_queue_general_nsi_means_of_passport"
+                }
+            },
+            "dictionaries": {
+                "new_dict": {
+                    "columns": [
+                        {
+                            "data_type": "CharField",
+                            "additional": {
+                                "pk": true,
+                                "max_length": "100"
+                            },
+                            "human_name": "ИНН",
+                            "system_name": "INN777",
+                            "is_primary_key": true
+                        },
+                        {
+                            "data_type": "CharField",
+                            "additional": {
+                                "max_length": "100"
+                            },
+                            "system_name": "OKTMO"
+                        }
+                    ],
+                    "comment": "супер инфа",
+                    "old_columns": [
+                        {
+                            "data_type": "CharField",
+                            "additional": {
+                                "pk": true,
+                                "max_length": "100"
+                            },
+                            "human_name": "ИНН",
+                            "system_name": "INN777",
+                            "is_primary_key": true
+                        },
+                        {
+                            "data_type": "CharField",
+                            "additional": {
+                                "max_length": "100"
+                            },
+                            "system_name": "OKTMO"
+                        }
+                    ]
+                }
+            }
+        }
+    }
+]

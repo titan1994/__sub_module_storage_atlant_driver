@@ -1,0 +1,94 @@
+[
+    {
+        "name": "__cl_smpb_nsi_general_nsi_new_dict",
+        "attributes": [
+            {
+                "name": "INN777",
+                "type": "String",
+                "comment": "",
+                "is_pk": true
+            },
+            {
+                "name": "OKTMO",
+                "type": "String",
+                "comment": "",
+                "is_pk": false
+            }
+        ]
+    },
+    {
+        "name": "__cl_smpb_showcase_data_general_nsi_means_of_passport",
+        "attributes": [
+            {
+                "name": "INN",
+                "type": "String",
+                "comment": "ИНН",
+                "is_pk": true
+            },
+            {
+                "name": "Size",
+                "type": "Int32",
+                "comment": "Размер ставки-подставки",
+                "is_pk": false
+            },
+            {
+                "name": "MaxPart",
+                "type": "Int32",
+                "comment": "Максимальная часть. Редкость",
+                "is_pk": false
+            },
+            {
+                "name": "new_dict_OKTMO",
+                "type": "String",
+                "comment": "OKTMO",
+                "is_pk": false
+            }
+        ]
+    },
+    {
+        "name": "__cl_smpb_showcase_kafka_queue_general_nsi_means_of_passport",
+        "attributes": [
+            {
+                "name": "INN",
+                "type": "String",
+                "comment": "ИНН",
+                "is_pk": false
+            },
+            {
+                "name": "Size",
+                "type": "Int32",
+                "comment": "Размер ставки-подставки",
+                "is_pk": false
+            },
+            {
+                "name": "MaxPart",
+                "type": "Int32",
+                "comment": "Максимальная часть. Редкость",
+                "is_pk": false
+            }
+        ]
+    },
+    {
+        "name": "__cl_smpb_showcase_view_general_nsi_means_of_passport",
+        "attributes": [
+            {
+                "name": "INN",
+                "type": "String",
+                "comment": "",
+                "is_pk": false
+            },
+            {
+                "name": "Size",
+                "type": "Int32",
+                "comment": "",
+                "is_pk": false
+            },
+            {
+                "name": "MaxPart",
+                "type": "Int32",
+                "comment": "",
+                "is_pk": false
+            }
+        ]
+    }
+]
