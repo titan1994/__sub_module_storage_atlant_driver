@@ -11,10 +11,26 @@ DEFAULT_client_key_NAME = 'client_key'
 DEFAULT_APP_KEY_NAME = 'ASGI_python_showcase_app_name'
 
 
+async def get_all_clients():
+    """
+    Получить список всех клиентов
+    """
+
+    key_name = get_key_app()
+    link_client = f'{GeneralConfig.JAVA_KEY_VALUE_JSONB_URL}/export/structure/{DEFAULT_APP_KEY_NAME}/{key_name}'
+    res = await send_get(url=link_client)
+    if res.status_code != 200:
+        # info = res.text
+        return None
+
+    return res.json()
+
+
 async def get_client(client_key):
     """
     Получает данные текущего клиента
     """
+
     key_name = get_key_app(DEFAULT_client_key_NAME)
     link_client = f'{GeneralConfig.JAVA_KEY_VALUE_JSONB_URL}/export/structure/{key_name}/{client_key}'
     res = await send_get(url=link_client)
@@ -28,6 +44,7 @@ async def delete_client(client_key):
     """
     Удаляет данные текущего клиента
     """
+
     key_name = get_key_app(DEFAULT_client_key_NAME)
     link_client = f'{GeneralConfig.JAVA_KEY_VALUE_JSONB_URL}/export/structure/{key_name}/{client_key}'
     res = await send_delete(url=link_client)
