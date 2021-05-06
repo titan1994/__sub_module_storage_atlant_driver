@@ -19,5 +19,6 @@
 # Схема проекта
 https://miro.com/app/board/o9J_lL26Z9E=/
 
-05042021
+
+
 
