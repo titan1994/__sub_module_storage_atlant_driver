@@ -164,6 +164,18 @@ def combine_model_name(name):
     return res.lower()
 
 
+def combine_column_name(name):
+    """
+    Причёсываем имя колонки регулярным выражением:
+        + использовать только латиницу в названиях любых объектов
+        + использовать адекватные имена колонок
+        + допускается всего один спец символ _
+    """
+    pattern = re_compile('[^a-zA-z0-9_]')
+    res = pattern.sub(string=name, repl='')
+    return res
+
+
 """
 Connections
 """

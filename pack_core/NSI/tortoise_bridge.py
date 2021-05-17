@@ -19,7 +19,7 @@ from ..psql_jsonb.connector import create_or_update_client, get_client, \
 import MODS.DRIVERS.data_base.async_click_house.ycl as ycl
 from MODS.rest_core.pack_core.aerich_proc.mig import update_tables, DEFAULT_FILE_MIGRATION_LOG
 from ..main import \
-    ycl_get_connection_settings, gen_dict_table_name, \
+    ycl_get_connection_settings, gen_dict_table_name, combine_column_name,\
     DEFAULT_META_NAME_DICTS, DEFAULT_OLD_INFO_DICT_META_COLUMNS, DEFAULT_YCL_PRIM_KEY_FUNC_TYPES
 
 from MODS.standart_namespace.models import get_project_prefix
@@ -487,7 +487,7 @@ def create_jinja_dict_for_python(columns, model_name, dict_comment, name_dict, n
             add_settings['pk'] = is_primary_key
 
         jinja_column = {
-            'name': column_name,
+            'name': combine_column_name(column_name),
             'comment': column_comment,
             'type': data_type,
             'params': add_settings,

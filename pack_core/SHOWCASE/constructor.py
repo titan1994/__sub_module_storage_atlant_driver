@@ -11,6 +11,7 @@ from ..main import \
     gen_showcase_table_name_showcase, \
     gen_showcase_table_name_view, \
     ycl_get_connection_settings, \
+    combine_column_name, \
     gen_dict_table_name, \
     DEFAULT_META_NAME_SHOWCASE, \
     DEFAULT_YCL_PRIM_KEY_FUNC_TYPES
@@ -147,9 +148,8 @@ async def smart_create_showcases(json_data):
                 global_response['show_case_input'] = \
                     global_response['show_case_input'] + 1
 
-                # showcase_name = showcase_obj['system_name']
-                columns = showcase_obj['columns']
-                column_repair_for_jinja(columns)
+                columns = column_repair_for_jinja(showcase_obj['columns'])
+                showcase_obj['columns'] = columns
 
                 info_old_showcase = dict_info_old.get(showcase_name)
 
@@ -743,6 +743,7 @@ def column_repair_for_jinja(column_input):
     Доработка опциональных параметров для ниндзи
     Можно тоже самое сделать средствами ниндзи но её уже сложно читать
     """
+    new_column = {}
     for column_name, column_data in column_input.items():
         if column_data.get('type') is None:
             column_data['type'] = ''
@@ -758,6 +759,10 @@ def column_repair_for_jinja(column_input):
 
         if column_data.get('ttl') is None:
             column_data['ttl'] = ''
+
+        new_column[combine_column_name(column_name)] = column_data
+
+    return new_column
 
 
 def ycl_generate_column_showcase(client_key, column_input, relation_dicts, meta_data):
