@@ -104,13 +104,13 @@ def low_level_response_processing(res_req):
 
     json_result = res_req.json()
 
-    if json_result.get('status', None):
-        if not json_result['status']:
-            return None
+    status = json_result.get('status', 'OK')
+    if not status:
+        return None
 
-    if json_result.get('Status', None):
-        if not json_result['Status']:
-            return None
+    status = json_result.get('Status', 'OK')
+    if not status:
+        return None
 
     if json_result.get('response', None):
         return json_result['response']
