@@ -19,13 +19,9 @@ async def get_all_clients():
     key_name = get_key_app()
     link_client = f'{GeneralConfig.JAVA_KEY_VALUE_JSONB_URL}/export/structure/{DEFAULT_APP_KEY_NAME}/{key_name}'
     res = await send_get(url=link_client)
-    if res is None:
-        return None
-    if res.status_code != 200:
-        # info = res.text
-        return None
 
-    return res.json()
+    json_res = low_level_response_processing(res)
+    return json_res
 
 
 async def get_client(client_key):
@@ -36,12 +32,9 @@ async def get_client(client_key):
     key_name = get_key_app(DEFAULT_client_key_NAME)
     link_client = f'{GeneralConfig.JAVA_KEY_VALUE_JSONB_URL}/export/structure/{key_name}/{client_key}'
     res = await send_get(url=link_client)
-    if res is None:
-        return None
-    if res.status_code != 200:
-        # info = res.text
-        return None
-    return res.json()
+
+    json_res = low_level_response_processing(res)
+    return json_res
 
 
 async def delete_client(client_key):
@@ -52,12 +45,9 @@ async def delete_client(client_key):
     key_name = get_key_app(DEFAULT_client_key_NAME)
     link_client = f'{GeneralConfig.JAVA_KEY_VALUE_JSONB_URL}/export/structure/{key_name}/{client_key}'
     res = await send_delete(url=link_client)
-    if res is None:
-        return None
-    if res.status_code != 200:
-        # info = res.text
-        return None
-    return res.json()
+
+    json_res = low_level_response_processing(res)
+    return json_res
 
 
 async def create_client(client_key, client_info=None, guid_update=None):
@@ -93,13 +83,48 @@ async def create_client(client_key, client_info=None, guid_update=None):
     link_client = f'{GeneralConfig.JAVA_KEY_VALUE_JSONB_URL}/import-or-update/common'
 
     res = await send_post(url=link_client, data_body=list_data_to_service)
-    if res is None:
-        return None
-    if res.status_code != 200:
-        # info = res.text
+    json_res = low_level_response_processing(res)
+    if not json_res:
         return None
 
     return list_data_to_service
+
+
+def low_level_response_processing(res_req):
+    """
+    Процессор обработки ответов для получения только корректных джсонов от разных сервисов
+    """
+
+    if res_req is None:
+        return None
+
+    if res_req.status_code != 200:
+        # info = res.text
+        return None
+
+    json_result = res_req.json()
+
+    if json_result.get('status', None):
+        if not json_result['status']:
+            return None
+
+    if json_result.get('Status', None):
+        if not json_result['Status']:
+            return None
+
+    if json_result.get('response', None):
+        return json_result['response']
+
+    if json_result.get('data', None):
+        return json_result['data']
+
+    if json_result.get('Response', None):
+        return json_result['Response']
+
+    if json_result.get('Data', None):
+        return json_result['Data']
+
+    return json_result
 
 
 async def create_or_update_client(client_key, add_info=None, key_info=None):
