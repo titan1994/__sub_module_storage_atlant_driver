@@ -21,7 +21,7 @@ def first_init():
         GeneralConfig.CLICKHOUSE_SHOWCASE_URL = getenv('CLICKHOUSE_SHOWCASE_URL_NO_DOCKER')
 
     if GeneralConfig.CLICKHOUSE_SHOWCASE_URL and GeneralConfig.CLICKHOUSE_SHOWCASE_URL.startswith('clickhouse'):
-        GeneralConfig.CLICKHOUSE_SHOWCASE_URL = GeneralConfig.CLICKHOUSE_SHOWCASE_URL.replace('clickhouse', 'postgres')
+        GeneralConfig.CLICKHOUSE_SHOWCASE_URL = GeneralConfig.CLICKHOUSE_SHOWCASE_URL.replace('clickhouse', 'postgres', 1)
 
     # Адрес всех доступных брокеров кафки глазами приложения и глазами кликхауса
     if GeneralConfig.ITS_DOCKER:
