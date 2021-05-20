@@ -1,0 +1,68 @@
+{
+  "Basic client": {
+    "human_name": "Тестовый клиент. Основные словари",
+    "showcases": {
+      "Passport KFH": {
+        "human_name": "Значения паспорта КФХ",
+        "relation_dicts": {
+          "Organizations RF": {
+            "relation_keys": [
+              "INN"
+            ]
+          }
+        },
+        "kafka_settings_queue": {
+          "kafka_num_consumers": 4,
+          "kafka_thread_per_consumer": 1,
+          "kafka_format": "JSONEachRow",
+          "kafka_row_delimiter": "\n"
+        },
+        "columns": {
+          "INN": {
+            "human_name": "ИНН",
+            "type": "String"
+          },
+          "Size": {
+            "human_name": "Размер ставки-подставки",
+            "type": "Int32"
+          },
+          "MaxPart": {
+            "human_name": "Максимальная часть. Редкость",
+            "type": "Int32"
+          }
+        },
+        "engine": "MergeTree()",
+        "order_by": [
+          "INN"
+        ]
+      }
+    },
+    "dictionaries": {
+      "Organizations RF": {
+        "human_name": "супер инфа",
+        "columns": [
+          {
+            "system_name": "INN777",
+            "human_name": "ИНН",
+            "data_type": "CharField",
+            "is_primary_key": true,
+            "additional": {
+              "max_length": "100"
+            }
+          },
+          {
+            "system_name": "OKTMO",
+            "data_type": "CharField",
+            "additional": {
+              "max_length": "100"
+            }
+          }
+        ]
+      }
+    },
+    "add_info": {
+      "address": "Улица безграничной галактики в доме вселенной"
+    }
+  }
+}
+
