@@ -103,9 +103,10 @@ async def smart_update_add_info(client_key, add_info):
             old_info = add_info
 
         await create_or_update_client(
-            client_key=old_client,
+            client_key=client_key,
             add_info=old_info,
-            key_info=None
+            key_info=None,
+            client_json=old_client
         )
 
     except Exception as exp:

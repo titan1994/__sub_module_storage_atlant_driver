@@ -127,21 +127,19 @@ def low_level_response_processing(res_req):
     return json_result
 
 
-async def create_or_update_client(client_key, add_info=None, key_info=None):
+async def create_or_update_client(client_key, add_info=None, key_info=None, client_json=None):
     """
     Создать или обновить клиента
 
     client_key - ключ клиента строкой или заранее полученный клиент
     """
 
-    if isinstance(client_key, str):
-        # Ключ клиента
-        client = await get_client(client_key=client_key)
-        client_name = client_key
+    if client_json:
+        client = client_json
     else:
-        # Метаданные клиента
-        client = client_key
-        client_name = client[0]['structureMetadata'][get_key_app(DEFAULT_client_key_NAME)]
+        client = await get_client(client_key=client_key)
+
+    client_name = client_key
 
     if client:
         guid_update = client[0]['structureMetadata']['guid']
