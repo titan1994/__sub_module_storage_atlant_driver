@@ -12,7 +12,7 @@ from pack_core.psql_jsonb.connector import get_client
 
 parent_folder = Path(__file__).parent.parent
 TEST_POST_FILE = parent_folder / \
-                 '__test_data' / 'client' / '__post_add_update.json'
+                 '__test_data' / 'client' / '__post_add_or_update..json'
 
 TEST_DEL_FILE = parent_folder / \
                 '__test_data' / 'client' / '__delete.json'
