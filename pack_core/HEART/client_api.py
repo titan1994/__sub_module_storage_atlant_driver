@@ -132,7 +132,7 @@ async def smart_delete_client(json_data):
     """
 
     summary_report = {}
-    for client_key, in json_data:
+    for client_key in json_data:
 
         report_client = {
             'status': False,
