@@ -25,7 +25,7 @@ async def test_processing_post_create():
     with open(TEST_POST_FILE, 'r', encoding='utf-8') as file:
         input_data = jsl(fp=file)
 
-    result = await bridge_smart_create_dictionaries(json_data=input_data)
+    result = await bridge_smart_create_dictionaries(data_json=input_data)
     with open('z_send_insert_dict.json', 'w', encoding='utf-8') as fb:
         jsd(result, fb, ensure_ascii=False, indent=4)
 
@@ -38,7 +38,7 @@ async def test_processing_delete():
     with open(TEST_DEL_FILE, 'r', encoding='utf-8') as file:
         input_data = jsl(fp=file)
 
-    result = await bridge_smart_delete_dictionaries(json_data=input_data)
+    result = await bridge_smart_delete_dictionaries(data_json=input_data)
     with open('z_send_delete_dict.json', 'w', encoding='utf-8') as fb:
         jsd(result, fb, ensure_ascii=False, indent=4)
 
@@ -49,5 +49,5 @@ if __name__ == '__main__':
     """
 
     ioloop = asyncio.get_event_loop()
-    # ioloop.run_until_complete(test_processing_post_create())
+    ioloop.run_until_complete(test_processing_post_create())
     # ioloop.run_until_complete(test_processing_delete())

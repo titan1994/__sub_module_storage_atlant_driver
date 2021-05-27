@@ -20,6 +20,7 @@ DEFAULT_META_NAME_DICTS = 'dictionaries'
 DEFAULT_META_NAME_SHOWCASE = 'showcases'
 DEFAULT_META_NAME_ADD_INFO = 'add_info'
 DEFAULT_OLD_INFO_DICT_META_COLUMNS = 'old_columns'
+DEFAULT_META_NAME_SHOWCASE_COLUMN_REL_DICT = 'relations_dict'
 
 # Функции которые должны быть вставлены в dictGet - tuple
 # dictGet('default.kfx_plan_fact_type_5', 'name', tuple(toInt64(ID))) as Name

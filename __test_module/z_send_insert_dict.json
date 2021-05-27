@@ -1,0 +1,87 @@
+{
+    "dict_input": 1,
+    "dict_success_import": 1,
+    "orm_processing": {
+        "Basic client": {
+            "status": true,
+            "dict_input": 1,
+            "dict_success": 1,
+            "report": [
+                {
+                    "dict_name": "Organizations RF",
+                    "success": true,
+                    "process_data": true,
+                    "orm_create": true,
+                    "msg": "OK"
+                }
+            ]
+        }
+    },
+    "aerich_state": true,
+    "aerich_msg": "success migration",
+    "clickhouse_processing": {
+        "Basic client": {
+            "dict_input": 1,
+            "dict_success_import": 1,
+            "dict_reports": [
+                {
+                    "status": true,
+                    "dict_name": "Organizations RF",
+                    "model_name": "____sub_module_storage_atlant_driver_nsi_basicclient_organizationsrf",
+                    "msg": "OK"
+                }
+            ]
+        }
+    },
+    "downgrade_data": null,
+    "downgrade_orm_processing": null,
+    "jsonb_processing": {
+        "Basic client": {
+            "status": true,
+            "jsonb_service_info": {
+                "Organizations RF": {
+                    "comment": "Организации",
+                    "columns": [
+                        {
+                            "system_name": "INN777",
+                            "human_name": "ИНН",
+                            "data_type": "CharField",
+                            "is_primary_key": true,
+                            "additional": {
+                                "max_length": "100",
+                                "pk": true
+                            }
+                        },
+                        {
+                            "system_name": "OKTMO",
+                            "data_type": "CharField",
+                            "additional": {
+                                "max_length": "100"
+                            }
+                        }
+                    ],
+                    "old_columns": [
+                        {
+                            "system_name": "INN777",
+                            "human_name": "ИНН",
+                            "data_type": "CharField",
+                            "is_primary_key": true,
+                            "additional": {
+                                "max_length": "100",
+                                "pk": true
+                            }
+                        },
+                        {
+                            "system_name": "OKTMO",
+                            "data_type": "CharField",
+                            "additional": {
+                                "max_length": "100"
+                            }
+                        }
+                    ]
+                }
+            },
+            "error_msg": ""
+        }
+    }
+}

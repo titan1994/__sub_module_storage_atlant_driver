@@ -14,7 +14,8 @@ from ..main import \
     combine_column_name, \
     gen_dict_table_name, \
     DEFAULT_META_NAME_SHOWCASE, \
-    DEFAULT_YCL_PRIM_KEY_FUNC_TYPES
+    DEFAULT_YCL_PRIM_KEY_FUNC_TYPES, \
+    DEFAULT_META_NAME_SHOWCASE_COLUMN_REL_DICT
 
 import MODS.DRIVERS.data_base.async_click_house.ycl as ycl
 
@@ -24,7 +25,6 @@ from ..psql_jsonb.connector import \
     create_or_update_client, get_client
 
 from MODS.standart_namespace.models import get_project_prefix
-
 
 """
 Создание витрины данных + Мега апдейт 
@@ -785,11 +785,11 @@ def ycl_generate_column_showcase(client_key, column_input, relation_dicts, meta_
 
         for dict_name_raw, rel_data in relation_dicts.items():
 
-            dict_key = rel_data.get('client_name')
-            if not dict_key:
-                dict_key = client_key
+            client_name = rel_data.get('client_name')
+            if not client_name:
+                client_name = client_key
 
-            dict_name = adaptation_dict_name(client_key=dict_key, key_name=dict_name_raw)
+            dict_name = adaptation_dict_name(client_key=client_name, key_name=dict_name_raw)
             meta_columns = meta_data.get(dict_name)
             if not meta_columns:
                 # Возможно это важно. Но если нет метаданных словаря - считаем что его просто нет
@@ -799,9 +799,11 @@ def ycl_generate_column_showcase(client_key, column_input, relation_dicts, meta_
             # В кликхаусе это не прослеживается явно. Единственное что удалось придумать - у вас на экране
 
             type_rel = []
+            dict_bind_column = []
             for rel_column in meta_columns:
                 if rel_column['is_pk']:
                     type_rel.append(rel_column['type'])
+                    dict_bind_column.append(rel_column['name'])
 
             relation_keys = rel_data.get('relation_keys')
             if not relation_keys:
@@ -824,6 +826,25 @@ def ycl_generate_column_showcase(client_key, column_input, relation_dicts, meta_
             if not relations:
                 continue
 
+            # Добавление данных связки словаря с колонками
+            ind_rel = 0
+            for key_rel in relation_keys:
+                bind_data = column_input[key_rel].get(DEFAULT_META_NAME_SHOWCASE_COLUMN_REL_DICT, {})
+                client_bind_data = bind_data.get(client_key, {})
+                dict_bind_data = client_bind_data.get(dict_name_raw, {})
+
+                dict_bind_data[dict_bind_column[ind_rel]] = True
+
+                client_bind_data[dict_name_raw] = dict_bind_data
+                bind_data[client_key] = client_bind_data
+                column_input[key_rel][DEFAULT_META_NAME_SHOWCASE_COLUMN_REL_DICT] = bind_data
+
+                ind_rel = ind_rel + 1
+                if ind_rel >= len(type_rel):
+                    break
+
+
+            # Добавление АЛИАСОВ
             columns_list = rel_data.get('columns_list')
             is_ignore_list = rel_data.get('ignore_or_using_list')
 
@@ -1079,9 +1100,3 @@ async def smart_delete_showcases(json_data):
 
     summary_result['jsonb_processing'] = jsonb_processing
     return summary_result
-
-
-
-
-
-
