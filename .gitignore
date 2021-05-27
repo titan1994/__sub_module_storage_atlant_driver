@@ -55,3 +55,8 @@ __docker/volumes/kafka/zoo/data/*
 
 __docker/volumes/kafka/zoo/log/*
 !__docker/volumes/kafka/zoo/log/.gitkeep
+/__fast_api_app/models/general/NSI/
+__migrations/aerich/*
+__migrations/migration.log
+!__migrations/aerich/.gitkeep
+/aerich.ini
