@@ -7,6 +7,7 @@ from os import getenv
 from shutil import rmtree
 from tortoise.backends.base.config_generator import expand_db_url
 from tortoise import Tortoise
+from MODS.rest_core.pack_core.system_models.system_models import tortoise_state
 
 from MODS.scripts.python.jinja import jinja_render_to_file
 from MODS.rest_core.pack_core.aerich_proc import config as cfg_tortoise
@@ -231,10 +232,7 @@ async def bridge_smart_create_dictionaries(data_json):
 
     # dict_success_import
     global_response['jsonb_processing'] = jsonb_processing
-
-    # Реанимация тортоиса
-    await Tortoise.init(config=cfg_tortoise.get_tortoise_config())
-
+    await tortoise_state.state_reset()
     return global_response
 
 
@@ -777,10 +775,7 @@ async def bridge_smart_delete_dictionaries(data_json):
         jsonb_processing[client_key] = report
 
     summary_result['jsonb_processing'] = jsonb_processing
-
-    # Реанимация тортоиса
-    await Tortoise.init(config=cfg_tortoise.get_tortoise_config())
-
+    await tortoise_state.state_reset()
     return summary_result
 
 
