@@ -232,6 +232,8 @@ async def bridge_smart_create_dictionaries(data_json):
 
     # dict_success_import
     global_response['jsonb_processing'] = jsonb_processing
+    # Реанимация тортоиса
+    await Tortoise.init(config=cfg_tortoise.get_tortoise_config())
     await tortoise_state.state_reset()
     return global_response
 
