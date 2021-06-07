@@ -777,6 +777,9 @@ async def bridge_smart_delete_dictionaries(data_json):
         jsonb_processing[client_key] = report
 
     summary_result['jsonb_processing'] = jsonb_processing
+
+    # Реанимация тортоиса
+    await Tortoise.init(config=cfg_tortoise.get_tortoise_config())
     await tortoise_state.state_reset()
     return summary_result
 
