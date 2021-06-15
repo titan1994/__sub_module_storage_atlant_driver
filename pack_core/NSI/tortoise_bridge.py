@@ -338,6 +338,9 @@ async def process_orm(data_json, is_repair=False):
                         report_dict['success'] = True
                         raise NSIRepairError(f'folder deleted {client_folder}')
 
+                if len(columns) == 1:  # Т.к. кликхаус не создаёт словари с одним столбцом - добавляем технический
+                    columns.append({'system_name': '__sys__', 'data_type': 'SmallIntField', 'is_primary_key': False})
+
                 dict_repair[dict_name] = {
                     'columns': columns,
                     'dict_comment': dict_comment,
