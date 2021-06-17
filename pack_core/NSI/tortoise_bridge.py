@@ -20,7 +20,7 @@ from ..psql_jsonb.connector import create_or_update_client, get_client, \
 import MODS.DRIVERS.data_base.async_click_house.ycl as ycl
 from MODS.rest_core.pack_core.aerich_proc.mig import update_tables, DEFAULT_FILE_MIGRATION_LOG
 from ..main import \
-    ycl_get_connection_settings, gen_dict_table_name, combine_column_name,\
+    ycl_get_connection_settings, gen_dict_table_name, combine_column_name, \
     DEFAULT_META_NAME_DICTS, DEFAULT_OLD_INFO_DICT_META_COLUMNS, DEFAULT_YCL_PRIM_KEY_FUNC_TYPES
 
 from MODS.standart_namespace.models import get_project_prefix
@@ -57,7 +57,7 @@ DEFAULT_TORTOISE_TYPE_TO_YCL = {
     'TimeDeltaField': 'Int64',
 
     # Частный случай преобразования - наличие доп полей обязательно
-    'DecimalField': '',  # DecimalField(max_digits, decimal_places) to f'Decimal64({precision},{scale})'
+    'DecimalField': 'Decimal',  # DecimalField(max_digits, decimal_places) to f'Decimal64({precision},{scale})'
 
     # Редкое месиво - в массив
     'IntEnumField': 'Array(Int32)',
@@ -116,6 +116,7 @@ async def bridge_smart_create_dictionaries(data_json):
 
     # Шаг 0 - Получить все необходимые данные для выполнения шагов по созданию словарей
     # Шаг 1 - Выполнить сразу. В создании файлов ORM нет ничего сложного
+
     step_by_step, response_orm_processing = await process_orm(data_json=data_json)
     global_response['orm_processing'] = response_orm_processing
 
@@ -485,7 +486,11 @@ def create_jinja_dict_for_python(columns, model_name, dict_comment, name_dict, n
         column_comment = column.get('human_name', column_name)
         is_primary_key = column.get('is_primary_key', False)
         add_settings = column.get('additional', {})
-
+        if data_type == 'DecimalField':
+            # DecimalField(max_digits, decimal_places)
+            add_settings = column['additional']
+            add_settings['max_digits'] = add_settings.get('max_digits', 15)
+            add_settings['decimal_places'] = add_settings.get('decimal_places', 5)
         if is_primary_key:
             add_settings['pk'] = is_primary_key
 
@@ -550,7 +555,6 @@ def create_jinja_dict_for_ycl(columns, model_name):
         is_primary_key = column.get('is_primary_key', False)
         if is_primary_key:
             dict_jinja['primary_keys'].append(column_name)
-
         result_type = DEFAULT_TORTOISE_TYPE_TO_YCL[data_type]
         if data_type == 'DecimalField':
             # DecimalField(max_digits, decimal_places)
@@ -558,13 +562,15 @@ def create_jinja_dict_for_ycl(columns, model_name):
             add_settings = column['additional']
             precision = add_settings['max_digits']
             scale = add_settings['decimal_places']
-            result_type = f'Decimal64({precision},{scale})'
-
+            result_type = f'Decimal({precision},{scale})'
+            func_types[column_name] = f'ToDecimal({precision},{scale})'
+        else:
+            func_types[column_name] = DEFAULT_YCL_PRIM_KEY_FUNC_TYPES[result_type]
         fields_jinja[column_name] = {
             'type': result_type,
             # 'comment': column_comment,
         }
-        func_types[column_name] = DEFAULT_YCL_PRIM_KEY_FUNC_TYPES[result_type]
+
 
     return dict_jinja
 

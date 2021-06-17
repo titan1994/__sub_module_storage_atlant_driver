@@ -45,7 +45,7 @@ DEFAULT_YCL_PRIM_KEY_FUNC_TYPES = {
     'DateTime64': 'toDateTime',
 
     # Частный случай преобразования - наличие доп полей обязательно
-    'Decimal64': 'toDecimal64',  #
+    'Decimal': 'toDecimal64',  #
 
     # Редкое месиво - в массив
     'Array(Int32)': '',
